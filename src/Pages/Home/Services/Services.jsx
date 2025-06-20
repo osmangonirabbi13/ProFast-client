@@ -50,17 +50,17 @@ const servicesData = [
 
 const Services = () => {
   return (
-    <section className="py-16 px-4 md:px-10 bg-gray-50">
+    <section className="py-16 mx-4 px-4 md:px-10 bg-[#03373D] rounded-xl">
       <div className="max-w-7xl mx-auto text-center mb-10">
-        <h2 className="text-3xl text-primary font-bold mb-4">Our Services</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <h2 className="text-3xl text-white font-bold mb-4">Our Services</h2>
+        <p className="text-white max-w-2xl mx-auto">
           Enjoy fast, reliable parcel delivery with real-time tracking and zero
           hassle. From personal packages to business shipments — we deliver on
           time, every time.
         </p>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 ">
         {servicesData.map((service, idx) => (
           <ServiceCard key={idx} service={service} />
         ))}

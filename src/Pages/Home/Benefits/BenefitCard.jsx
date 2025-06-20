@@ -2,7 +2,7 @@ import React from "react";
 
 const BenefitCard = ({ title, description, image }) => {
   return (
-    <div className="card w-full bg-base-100 shadow-md border hover:shadow-lg transition-all">
+    <div className="card w-full bg-base-100 border-[#FFFFFF]  shadow-md border hover:shadow-lg transition-all">
       <div className="card-body flex flex-col sm:flex-row items-start gap-4">
         <img src={image} alt={title} className="w-16 h-16 object-contain" />
         <div className="divider divider-horizontal hidden sm:flex my-0" />

@@ -4,11 +4,13 @@ import Services from "../Services/Services";
 import ClientLogosMarquee from "../ClientLogosMarquee/ClientLogosMarquee";
 import Benefits from "../Benefits/Benefits";
 import BeMerchant from "../BeMerchant/BeMerchant";
+import HowItWorks from "../Works/Works";
 
 const Home = () => {
   return (
     <>
       <Banner />
+      <HowItWorks />
       <Services />
       <ClientLogosMarquee />
       <Benefits />
