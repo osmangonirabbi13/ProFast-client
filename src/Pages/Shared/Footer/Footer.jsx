@@ -7,9 +7,9 @@ const Footer = () => {
       <aside>
         <ProFastLogo></ProFastLogo>
         <p className="font-bold">
-          ACME Industries Ltd.
-          <br />
-          Providing reliable tech since 1992
+          Enjoy fast, reliable parcel delivery with real-time tracking and zero
+          hassle. From personal packages <br /> to business shipments — we
+          deliver on time, every time.
         </p>
         <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
       </aside>
