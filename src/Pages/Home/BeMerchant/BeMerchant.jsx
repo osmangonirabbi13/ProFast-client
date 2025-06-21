@@ -8,7 +8,7 @@ const BeMerchant = () => {
       className="bg-[url('assets/be-a-merchant-bg.png')] mx-4 bg-no-repeat bg-[#03373D] rounded-xl p-20 mb-10"
     >
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <img src={location} className="max-w-sm rounded-lg shadow-2xl" />
+        <img src={location} className="max-w-sm rounded-lg " />
         <div>
           <h1 className="text-5xl font-bold text-white">
             Merchant and Customer Satisfaction is Our First Priority
