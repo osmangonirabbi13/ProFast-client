@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import useAuth from "../../../hooks/useAuth";
 
 const Register = () => {
   const {
@@ -8,8 +9,17 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { createUser } = useAuth();
+
   const onSubmit = (data) => {
     console.log(data);
+    createUser(data.email, data.password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
   return (
     <div className="card bg-base-100 w-full max-w-sm shrink-0 ">
@@ -45,17 +55,14 @@ const Register = () => {
               </p>
             )}
 
-            <div>
-              <a className="link link-hover">Forgot password?</a>
-            </div>
-            <button className="btn btn-primary text-black mt-4">
+            <button className="btn bg-[#CAEB66]  text-black mt-4">
               Register
             </button>
           </fieldset>
-          <p>
-            <small>
+          <p className="mt-2">
+            <small className="text-sm ">
               Already have an account?{" "}
-              <Link className="btn btn-link" to="/login">
+              <Link className=" text-red-500 underline  " to="/login">
                 Login
               </Link>
             </small>
