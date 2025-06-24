@@ -1,20 +1,37 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import ProFastLogo from "../ProFastLogo/ProFastLogo";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user } = useAuth();
   const navItems = (
     <>
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
+        <NavLink to="/sendParcel">Send A Parcel</NavLink>
+      </li>
+      <li>
         <NavLink to="/coverage">Coverage</NavLink>
+      </li>
+
+      {user && (
+        <>
+          <li>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </li>
+        </>
+      )}
+
+      <li>
+        <NavLink to="/about">About Us</NavLink>
       </li>
     </>
   );
   return (
-    <div className="navbar  p-0 bg-white px-2 md:px-12 lg:px-16 xl:px-50 lg:py-4  rounded-lg">
+    <div className="navbar  p-0 bg-white px-2 md:px-12 lg:px-16 xl:px-80 lg:py-4  rounded-lg">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -42,14 +59,16 @@ const Navbar = () => {
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">
-          <ProFastLogo />
+          <ProFastLogo></ProFastLogo>
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <Link to="/login" className="btn bg-[#CAEB66]  text-black">
+          Login
+        </Link>
       </div>
     </div>
   );
