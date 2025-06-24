@@ -3,9 +3,9 @@ import ProFastLogo from "../ProFastLogo/ProFastLogo";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-horizontal footer-center bg-neutral text-neutral-content rounded-2xl p-10">
+    <footer className="footer footer-horizontal footer-center bg-neutral text-neutral-content  p-10">
       <aside>
-        <ProFastLogo></ProFastLogo>
+        <ProFastLogo />
         <p className="font-bold">
           Enjoy fast, reliable parcel delivery with real-time tracking and zero
           hassle. From personal packages <br /> to business shipments — we
