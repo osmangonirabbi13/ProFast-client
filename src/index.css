@@ -8,5 +8,7 @@
   font-weight: 400;
   font-style: normal;
 }
-
+a.active{
+  @apply bg-[#FA2371]
+}
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router";
+import { Link, NavLink, Outlet } from "react-router";
 import ProFastLogo from "../Pages/Shared/ProFastLogo/ProFastLogo";
 
 const DashboardLayout = () => {
@@ -44,7 +44,9 @@ const DashboardLayout = () => {
         ></label>
         <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
           {/* Sidebar content here */}
-          <ProFastLogo></ProFastLogo>
+          <Link to="/" className=" text-xl">
+            <ProFastLogo></ProFastLogo>
+          </Link>
           <li>
             <NavLink to="/">Home</NavLink>
           </li>

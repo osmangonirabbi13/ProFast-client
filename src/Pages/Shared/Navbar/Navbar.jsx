@@ -4,7 +4,7 @@ import ProFastLogo from "../ProFastLogo/ProFastLogo";
 import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
-  const { user, logOut } = useAuth();
+  const { user, logOut, loading } = useAuth();
 
   const handleLogOut = () => {
     logOut()
@@ -67,15 +67,19 @@ const Navbar = () => {
             {navItems}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">
+        <Link to="/" className=" text-xl">
           <ProFastLogo></ProFastLogo>
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navItems}</ul>
+        <ul className="menu menu-horizontal px-1 gap-5 text-xl font-medium">
+          {navItems}
+        </ul>
       </div>
       <div className="navbar-end">
-        {user ? (
+        {loading ? (
+          <span className="loading loading-spinner loading-sm"></span>
+        ) : user ? (
           <button
             onClick={handleLogOut}
             className="btn bg-[#CAEB66] text-black"

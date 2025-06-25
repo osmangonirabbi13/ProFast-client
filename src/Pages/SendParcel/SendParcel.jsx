@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router";
 import useAuth from "../../hooks/useAuth";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const generateTrackingID = () => {
   const date = new Date();
@@ -112,8 +112,6 @@ const SendParcel = () => {
           tracking_id: generateTrackingID(),
         };
 
-        console.log("Ready for payment:", parcelData);
-
         axiosSecure.post("/parcels", parcelData).then((res) => {
           console.log(res.data);
           if (res.data.insertedId) {
@@ -141,7 +139,7 @@ const SendParcel = () => {
         </div>
 
         {/* Parcel Info */}
-        <div className="border p-4 rounded-xl shadow-md space-y-4">
+        <div className="border border-[#E5E7EB] p-4 rounded-xl shadow-md space-y-4">
           <h3 className="font-semibold text-xl">Parcel Info</h3>
           <div className="space-y-4">
             {/* Parcel Name */}
@@ -207,7 +205,7 @@ const SendParcel = () => {
         {/* Sender & Receiver Info */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Sender Info */}
-          <div className="border p-4 rounded-xl shadow-md space-y-4">
+          <div className="border border-[#E5E7EB] p-4 rounded-xl shadow-md space-y-4">
             <h3 className="font-semibold text-xl">Sender Info</h3>
             <div className="grid grid-cols-1 gap-4">
               <input
@@ -256,7 +254,7 @@ const SendParcel = () => {
           </div>
 
           {/* Receiver Info */}
-          <div className="border p-4 rounded-xl shadow-md space-y-4">
+          <div className="border border-[#E5E7EB] p-4 rounded-xl shadow-md space-y-4">
             <h3 className="font-semibold text-xl">Receiver Info</h3>
             <div className="grid grid-cols-1 gap-4">
               <input
@@ -307,7 +305,9 @@ const SendParcel = () => {
 
         {/* Submit Button */}
         <div className="text-center">
-          <button className="btn bg-[#CAEB66] text-black">Submit</button>
+          <button className="btn bg-[#CAEB66] px-10 py-3 text-xl text-black">
+            Submit
+          </button>
         </div>
       </form>
     </div>

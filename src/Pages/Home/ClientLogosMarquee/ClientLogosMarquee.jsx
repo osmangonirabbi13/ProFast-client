@@ -15,7 +15,7 @@ const logos = [amazon, google, casio, moonstar, start, randstad, people];
 const ClientLogosMarquee = () => {
   return (
     <section className="py-16 ">
-      <div className="max-w-7xl mx-auto px-4">
+      <div data-aos="fade-up" className="max-w-7xl mx-auto px-4">
         <h2 className="text-2xl text-black font-bold text-center mb-12">
           Trusted by Leading Brands
         </h2>
