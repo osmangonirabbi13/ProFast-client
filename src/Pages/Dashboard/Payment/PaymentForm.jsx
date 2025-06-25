@@ -119,7 +119,7 @@ const PaymentForm = () => {
         <CardElement className="p-2 border rounded"></CardElement>
         <button
           type="submit"
-          className="btn btn-primary text-black w-full"
+          className="btn bg-[#CAEB66] text-black w-full"
           disabled={!stripe}
         >
           Pay ${amount}

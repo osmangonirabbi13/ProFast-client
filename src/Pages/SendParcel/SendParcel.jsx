@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useLoaderData } from "react-router";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const generateTrackingID = () => {
@@ -62,7 +62,7 @@ const SendParcel = () => {
         Non-document over 3kg ${
           isSameDistrict ? "within" : "outside"
         } the district.<br/>
-        Extra charge: ৳40 x ${extraKg.toFixed(1)}kg = ৳${perKgCharge}<br/>
+        Extra charge: $40 x ${extraKg.toFixed(1)}kg = $ ${perKgCharge}<br/>
         ${districtExtra ? "+ ৳40 extra for outside district delivery" : ""}
       `;
       }
@@ -81,10 +81,10 @@ const SendParcel = () => {
           isSameDistrict ? "Within Same District" : "Outside District"
         }</p>
         <hr class="my-2"/>
-        <p><strong>Base Cost:</strong> ৳${baseCost}</p>
+        <p><strong>Base Cost:</strong> $  ${baseCost}</p>
         ${
           extraCost > 0
-            ? `<p><strong>Extra Charges:</strong> ৳${extraCost}</p>`
+            ? `<p><strong>Extra Charges:</strong> $ ${extraCost}</p>`
             : ""
         }
         <div class="text-gray-500 text-sm">${breakdown}</div>

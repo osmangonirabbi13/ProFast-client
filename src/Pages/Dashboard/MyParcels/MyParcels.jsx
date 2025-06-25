@@ -85,7 +85,7 @@ const MyParcels = () => {
               <td className="max-w-[180px] truncate">{parcel.title}</td>
               <td className="capitalize">{parcel.type}</td>
               <td>{formatDate(parcel.creation_date)}</td>
-              <td>৳{parcel.cost}</td>
+              <td>${parcel.cost}</td>
               <td>
                 <span
                   className={`badge ${
