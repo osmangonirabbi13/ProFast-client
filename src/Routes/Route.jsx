@@ -20,6 +20,7 @@ import ActiveRiders from "../Pages/Dashboard/ActiveRiders/ActiveRiders";
 import MakeAdmin from "../Pages/Dashboard/MakeAdmin/MakeAdmin";
 import AdminRoute from "../Router/AdminRoute";
 import Forbidden from "../Pages/Forbidden/Forbidden";
+import AssignRider from "../Pages/Dashboard/AssignRider/AssignRider";
 
 export const router = createBrowserRouter([
   {
@@ -100,17 +101,33 @@ export const router = createBrowserRouter([
       },
       {
         path: "pending-riders",
-        Component: PendingRiders,
+        element: (
+          <AdminRoute>
+            <PendingRiders></PendingRiders>
+          </AdminRoute>
+        ),
       },
       {
         path: "active-riders",
-        Component: ActiveRiders,
+        element: (
+          <AdminRoute>
+            <ActiveRiders></ActiveRiders>
+          </AdminRoute>
+        ),
       },
       {
         path: "makeAdmin",
         element: (
           <AdminRoute>
             <MakeAdmin></MakeAdmin>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "assign-rider",
+        element: (
+          <AdminRoute>
+            <AssignRider></AssignRider>
           </AdminRoute>
         ),
       },
