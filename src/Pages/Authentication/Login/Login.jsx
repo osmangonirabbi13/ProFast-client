@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
-import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../../Hooks/useAuth";
 
 const Login = () => {
   const {
@@ -66,7 +66,7 @@ const Login = () => {
           <p>
             <small>
               New to this website?{" "}
-              <Link className="btn btn-link" to="/register">
+              <Link state={{ from }} className="btn btn-link" to="/register">
                 Register
               </Link>
             </small>
