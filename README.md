@@ -1,12 +1,59 @@
-# React + Vite
+# 🚀 QuickDrop Courier
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A parcel delivery web application built using React, Firebase Authentication, React Query, and MongoDB.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔗 Live Site
 
-## Expanding the ESLint configuration
+[https://profast-courier.web.app/](https://profast-courier.web.app/)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📌 About
+
+> **QuickDrop Courier** is a modern parcel delivery app that connects users, riders, and admins in one seamless experience.
+
+- Users can place and track parcels.
+- Riders can view assigned deliveries.
+- Admins manage all operations.
+
+---
+
+---
+
+## 🧩 Key Features
+
+- 🔐 **Secure Authentication** — Login/register with Firebase, including Google Sign-In.
+- 📦 **Parcel Request System** — Users can create parcel delivery requests with full details.
+- 🚚 **Rider Assignment** — Admins can assign riders to pending parcels dynamically.
+- 📍 **Real-time Parcel Tracking** — Users can see current status: pending, assigned, delivered.
+- 🧑‍💼 **Role-Based Dashboard** — Separate dashboards for User, Rider, and Admin with protected routes.
+- ⚡ **Fast and Optimized** — React Query ensures smooth data fetching with smart caching.
+- 🖥️ **Responsive Design** — Looks great on mobile, tablet, and desktop.
+- 🧾 **Order History** — Users and riders can view delivery history.
+- 📊 **Dashboard Statistics** — Admin can view total users, riders, parcels, and statuses.
+- 🌐 **Modern Tech Stack** — Built with React, Tailwind CSS, Firebase, Express.js, and MongoDB.
+
+---
+
+
+## 🛠️ Tech Stack
+
+- React
+- Tailwind CSS
+- Firebase Auth
+- Express.js
+- MongoDB
+- React Router
+- React Query
+
+---
+
+## 🚀 Installation
+
+```bash
+git clone https://github.com/osmangonirabbi13/QuickDrop-Courier-client.git
+cd quickdrop-courier
+npm install
+npm run dev
