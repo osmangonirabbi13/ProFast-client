@@ -9,6 +9,16 @@ A parcel delivery web application built using React, Firebase Authentication, Re
 [https://profast-courier.web.app/](https://profast-courier.web.app/)
 
 ---
+## Admin Login
+link : https://profast-courier.web.app/dashboard  <br/>
+Email : admin@gmail.com	 <br/>
+Password : 123456 <br/>
+---
+## Rider Login
+link : https://profast-courier.web.app/dashboard   <br/>
+Email : rider@gmail.com   <br/>
+Password : 123456  <br/>
+---
 
 ## 📌 About
 
