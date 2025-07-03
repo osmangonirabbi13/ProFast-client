@@ -68,14 +68,17 @@ const PendingDeliveries = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Pending Deliveries</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center">
+        📦 Pending Deliveries
+      </h2>
+
       {isLoading ? (
-        <p>Loading...</p>
+        <p className="text-center text-gray-500">Loading deliveries...</p>
       ) : parcels.length === 0 ? (
-        <p className="text-gray-500">No assigned deliveries.</p>
+        <p className="text-center text-gray-500">No assigned deliveries.</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="table table-zebra w-full">
+          <table className="table table-zebra w-full text-sm">
             <thead>
               <tr>
                 <th>Tracking ID</th>
@@ -91,31 +94,49 @@ const PendingDeliveries = () => {
             <tbody>
               {parcels.map((parcel) => (
                 <tr key={parcel._id}>
-                  <td>{parcel.tracking_id}</td>
+                  <td className="font-mono text-blue-600">
+                    {parcel.tracking_id}
+                  </td>
                   <td>{parcel.title}</td>
                   <td>{parcel.type}</td>
                   <td>{parcel.receiver_name}</td>
                   <td>{parcel.receiver_center}</td>
                   <td>৳{parcel.cost}</td>
                   <td className="capitalize">
-                    {parcel.delivery_status.replace("_", " ")}
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs font-semibold
+                        ${
+                          parcel.delivery_status === "rider_assigned"
+                            ? "bg-yellow-100 text-yellow-700"
+                            : parcel.delivery_status === "in_transit"
+                            ? "bg-blue-100 text-blue-700"
+                            : "bg-green-100 text-green-700"
+                        }`}
+                    >
+                      {parcel.delivery_status.replace("_", " ")}
+                    </span>
                   </td>
                   <td>
                     {parcel.delivery_status === "rider_assigned" && (
                       <button
-                        className="btn btn-sm btn-primary text-black"
+                        className="btn btn-sm bg-yellow-400 text-black hover:bg-yellow-500"
                         onClick={() => handleStatusUpdate(parcel, "in_transit")}
                       >
-                        Mark Picked Up
+                        🚚 Start Delivery
                       </button>
                     )}
                     {parcel.delivery_status === "in_transit" && (
                       <button
-                        className="btn btn-sm btn-success text-black"
+                        className="btn btn-sm bg-green-500 text-white hover:bg-green-600"
                         onClick={() => handleStatusUpdate(parcel, "delivered")}
                       >
-                        Mark Delivered
+                        ✅ Mark Delivered
                       </button>
+                    )}
+                    {parcel.delivery_status === "delivered" && (
+                      <span className="text-green-600 font-medium">
+                        Delivered
+                      </span>
                     )}
                   </td>
                 </tr>

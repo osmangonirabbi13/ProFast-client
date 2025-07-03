@@ -11,6 +11,7 @@ const AssignRider = () => {
   const [loadingRiders, setLoadingRiders] = useState(false);
   const queryClient = useQueryClient();
 
+  // Step 1: Load assignable parcels
   const { data: parcels = [], isLoading } = useQuery({
     queryKey: ["assignableParcels"],
     queryFn: async () => {
@@ -24,25 +25,27 @@ const AssignRider = () => {
     },
   });
 
+  // Step 2: Assign rider mutation
   const { mutateAsync: assignRider } = useMutation({
     mutationFn: async ({ parcelId, rider }) => {
       const res = await axiosSecure.patch(`/parcels/${parcelId}/assign`, {
         riderId: rider._id,
         riderName: rider.name,
+        riderEmail: rider.email,
       });
       return res.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["assignableParcels"]);
       Swal.fire("Success", "Rider assigned successfully!", "success");
-      document.getElementById("assignModal").close();
+      document.getElementById("assignModal")?.close();
     },
     onError: () => {
       Swal.fire("Error", "Failed to assign rider", "error");
     },
   });
 
-  // Step 2: Open modal and load matching riders
+  // Step 3: Open modal and load riders
   const openAssignModal = async (parcel) => {
     setSelectedParcel(parcel);
     setLoadingRiders(true);
@@ -51,7 +54,7 @@ const AssignRider = () => {
     try {
       const res = await axiosSecure.get("/riders/available", {
         params: {
-          district: parcel.sender_center, // match with rider.district
+          district: parcel.sender_center,
         },
       });
       setRiders(res.data);
@@ -60,7 +63,13 @@ const AssignRider = () => {
       Swal.fire("Error", "Failed to load riders", "error");
     } finally {
       setLoadingRiders(false);
-      document.getElementById("assignModal").showModal();
+      const modal = document.getElementById("assignModal");
+      modal?.showModal();
+
+      // ⚠ Fix: focus modal heading to avoid aria-hidden focus warning
+      setTimeout(() => {
+        modal?.querySelector(".modal-heading")?.focus();
+      }, 100);
     }
   };
 
@@ -110,10 +119,14 @@ const AssignRider = () => {
               ))}
             </tbody>
           </table>
+
           {/* 🛵 Assign Rider Modal */}
           <dialog id="assignModal" className="modal">
             <div className="modal-box max-w-2xl">
-              <h3 className="text-lg font-bold mb-3">
+              <h3
+                tabIndex="-1"
+                className="text-lg font-bold mb-3 modal-heading"
+              >
                 Assign Rider for Parcel:{" "}
                 <span className="text-primary">{selectedParcel?.title}</span>
               </h3>
