@@ -9,6 +9,7 @@ const MyParcels = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
+
   const { data: parcels = [], refetch } = useQuery({
     queryKey: ["my-parcels", user.email],
     queryFn: async () => {
@@ -17,6 +18,8 @@ const MyParcels = () => {
     },
   });
 
+  console.log(parcels);
+
   const handleView = (id) => {
     console.log("View parcel", id);
     // You could open a modal or navigate to a detail page
@@ -24,7 +27,6 @@ const MyParcels = () => {
 
   const handlePay = (id) => {
     console.log("Proceed to payment for", id);
-    // Implement your payment logic
     navigate(`/dashboard/payment/${id}`);
   };
 
@@ -36,8 +38,8 @@ const MyParcels = () => {
       showCancelButton: true,
       confirmButtonText: "Yes, delete it",
       cancelButtonText: "Cancel",
-      confirmButtonColor: "#e11d48",
-      cancelButtonColor: "#6b7280",
+      confirmButtonColor: "#e11d48", // red-600
+      cancelButtonColor: "#6b7280", // gray-500
     });
     if (confirm.isConfirmed) {
       try {
@@ -85,7 +87,7 @@ const MyParcels = () => {
               <td className="max-w-[180px] truncate">{parcel.title}</td>
               <td className="capitalize">{parcel.type}</td>
               <td>{formatDate(parcel.creation_date)}</td>
-              <td>${parcel.cost}</td>
+              <td>৳{parcel.cost}</td>
               <td>
                 <span
                   className={`badge ${
@@ -107,7 +109,7 @@ const MyParcels = () => {
                 {parcel.payment_status === "unpaid" && (
                   <button
                     onClick={() => handlePay(parcel._id)}
-                    className="btn px-5 py-3 btn-xs bg-[#CAEB66] text-black"
+                    className="btn btn-xs btn-primary text-black"
                   >
                     Pay
                   </button>
