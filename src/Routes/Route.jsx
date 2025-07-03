@@ -23,6 +23,7 @@ import Forbidden from "../Pages/Forbidden/Forbidden";
 import AssignRider from "../Pages/Dashboard/AssignRider/AssignRider";
 import RiderRoute from "../Router/RiderRoute";
 import PendingDeliveries from "../Pages/Dashboard/PendingDeliveries/PendingDeliveries";
+import CompletedDeliveries from "../Pages/Dashboard/CompletedDeliveries/CompletedDeliveries";
 
 export const router = createBrowserRouter([
   {
@@ -110,6 +111,16 @@ export const router = createBrowserRouter([
           </RiderRoute>
         ),
       },
+      {
+        path: "completed-deliveries",
+        element: (
+          <RiderRoute>
+            <CompletedDeliveries></CompletedDeliveries>
+          </RiderRoute>
+        ),
+      },
+
+      // admin only
       {
         path: "pending-riders",
         element: (
