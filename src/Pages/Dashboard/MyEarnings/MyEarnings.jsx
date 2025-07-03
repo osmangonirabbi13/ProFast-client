@@ -8,6 +8,7 @@ import {
 } from "date-fns";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const MyEarnings = () => {
   const axiosSecure = useAxiosSecure();
@@ -62,6 +63,10 @@ const MyEarnings = () => {
 
   return (
     <div className="p-6 space-y-6">
+      <Helmet>
+        <title>MyEarnings - QuickDrop Courier</title>
+        <meta name="description" content="QuickDrop Courier MyEarnings" />
+      </Helmet>
       <h2 className="text-2xl font-bold">My Earnings</h2>
       {isLoading ? (
         <p>Loading...</p>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const TrackParcel = () => {
   const axiosSecure = useAxiosSecure();
@@ -31,6 +32,10 @@ const TrackParcel = () => {
 
   return (
     <div className="w-full px-4 py-8">
+      <Helmet>
+        <title>TrackParcel - QuickDrop Courier</title>
+        <meta name="description" content="QuickDrop Courier TrackParcel" />
+      </Helmet>
       <h2 className="text-3xl font-bold mb-6 text-center">Track Your Parcel</h2>
 
       <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-8 w-full">
@@ -43,7 +48,7 @@ const TrackParcel = () => {
         />
         <button
           onClick={handleTrack}
-          className="btn btn-primary w-full sm:w-auto"
+          className="btn bg-[#CAEB66]  text-black w-full sm:w-auto"
         >
           Track
         </button>

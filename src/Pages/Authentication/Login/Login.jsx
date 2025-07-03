@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import useAuth from "../../../Hooks/useAuth";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const Login = () => {
   const {
@@ -26,6 +27,10 @@ const Login = () => {
 
   return (
     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <Helmet>
+        <title>Login - QuickDrop Courier</title>
+        <meta name="description" content="QuickDrop Courier Login" />
+      </Helmet>
       <div className="card-body">
         <h1 className="text-5xl font-bold">Please Login</h1>
         <form onSubmit={handleSubmit(onSubmit)}>

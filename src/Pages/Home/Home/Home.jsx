@@ -5,10 +5,15 @@ import ClientLogosMarquee from "../ClientLogosMarquee/ClientLogosMarquee";
 import Benefits from "../Benefits/Benefits";
 import BeMerchant from "../BeMerchant/BeMerchant";
 import HowItWorks from "../Works/Works";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const Home = () => {
   return (
     <>
+      <Helmet>
+        <title>Home - QuickDrop Courier</title>
+        <meta name="description" content=" QuickDrop Courier Home Page" />
+      </Helmet>
       <Banner />
       <HowItWorks />
       <Services />

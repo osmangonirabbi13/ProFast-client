@@ -5,23 +5,36 @@ import UserDashboard from "./UserDashboard";
 import RiderDashboard from "./RiderDashboard";
 import AdminDashboard from "./AdminDashboard";
 import Forbidden from "../../Forbidden/Forbidden";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const DashboardHome = () => {
   const { role, roleLoading } = useUserRole();
 
   if (roleLoading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
 
+  let content;
+
   if (role === "user") {
-    return <UserDashboard></UserDashboard>;
+    content = <UserDashboard />;
   } else if (role === "rider") {
-    return <RiderDashboard></RiderDashboard>;
+    content = <RiderDashboard />;
   } else if (role === "admin") {
-    return <AdminDashboard></AdminDashboard>;
+    content = <AdminDashboard />;
   } else {
-    return <Forbidden></Forbidden>;
+    content = <Forbidden />;
   }
+
+  return (
+    <>
+      <Helmet>
+        <title>Dashboard - QuickDrop Courier</title>
+        <meta name="description" content="QuickDrop Courier Dashboard" />
+      </Helmet>
+      {content}
+    </>
+  );
 };
 
 export default DashboardHome;

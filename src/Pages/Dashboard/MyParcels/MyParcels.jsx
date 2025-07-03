@@ -4,6 +4,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const MyParcels = () => {
   const { user } = useAuth();
@@ -79,6 +80,10 @@ const MyParcels = () => {
 
   return (
     <div className="overflow-x-auto shadow-md rounded-xl">
+      <Helmet>
+        <title>MyParcels - QuickDrop Courier</title>
+        <meta name="description" content="QuickDrop Courier MyParcels" />
+      </Helmet>
       <table className="table table-zebra w-full">
         <thead className="bg-base-200 text-base font-semibold">
           <tr>
@@ -113,21 +118,21 @@ const MyParcels = () => {
               <td className="space-x-2">
                 <button
                   onClick={() => handleView(parcel)}
-                  className="btn btn-xs btn-outline"
+                  className="btn btn-xs btn-outline px-5 py-3 mb-2 md:mb-0 lg:mb-0"
                 >
                   View
                 </button>
                 {parcel.payment_status === "unpaid" && (
                   <button
                     onClick={() => handlePay(parcel._id)}
-                    className="btn btn-xs btn-primary text-black"
+                    className="btn btn-xs bg-[#CAEB66] px-6 py-3 text-black mb-2 md:mb-0 lg:mb-0"
                   >
                     Pay
                   </button>
                 )}
                 <button
                   onClick={() => handleDelete(parcel._id)}
-                  className="btn btn-xs btn-error"
+                  className="btn btn-xs btn-error px-4 py-3 mb-2 md:mb-0 lg:mb-0"
                 >
                   Delete
                 </button>

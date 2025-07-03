@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import axios from "axios";
 import useAuth from "../../../Hooks/useAuth";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const UpdateProfile = () => {
   const { user, updateUserProfile, changeUserPassword } = useAuth();
@@ -90,6 +91,10 @@ const UpdateProfile = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6 space-y-12">
+      <Helmet>
+        <title>UpdateProfile - QuickDrop Courier</title>
+        <meta name="description" content="QuickDrop Courier UpdateProfile" />
+      </Helmet>
       <h2 className="text-3xl font-bold text-center">Update Profile</h2>
 
       {/* Profile Update Form */}
@@ -127,7 +132,7 @@ const UpdateProfile = () => {
           )}
         </div>
 
-        <button type="submit" className="btn btn-primary w-full">
+        <button type="submit" className="btn bg-[#CAEB66]  text-black w-full">
           Update Profile
         </button>
       </form>

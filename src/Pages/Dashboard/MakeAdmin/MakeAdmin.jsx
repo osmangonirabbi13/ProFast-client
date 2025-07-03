@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { FaSearch, FaUserShield, FaUserTimes } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const MakeAdmin = () => {
   const axiosSecure = useAxiosSecure();
@@ -54,6 +55,10 @@ const MakeAdmin = () => {
 
   return (
     <div className="p-6">
+      <Helmet>
+        <title>MakeAdmin - QuickDrop Courier</title>
+        <meta name="description" content="QuickDrop Courier MakeAdmin" />
+      </Helmet>
       <h2 className="text-2xl font-semibold mb-4">Make Admin</h2>
 
       <div className="flex gap-2 mb-6 items-center">
@@ -102,7 +107,9 @@ const MakeAdmin = () => {
                     <button
                       onClick={() => handleRoleChange(u._id, u.role || "user")}
                       className={`btn btn-sm text-black ${
-                        u.role === "admin" ? "btn-error" : "btn-primary"
+                        u.role === "admin"
+                          ? "btn-error"
+                          : "bg-[#CAEB66]  text-black"
                       }`}
                     >
                       {u.role === "admin" ? (

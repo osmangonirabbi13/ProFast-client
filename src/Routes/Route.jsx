@@ -27,6 +27,7 @@ import CompletedDeliveries from "../Pages/Dashboard/CompletedDeliveries/Complete
 import MyEarnings from "../Pages/Dashboard/MyEarnings/MyEarnings";
 import DashboardHome from "../Pages/Dashboard/DashboardHome/DashboardHome";
 import UpdateProfile from "../Pages/Dashboard/UpdateProfile/UpdateProfile";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: "forbidden",
         Component: Forbidden,
+      },
+      {
+        path: "about",
+        Component: AboutUs,
       },
       {
         path: "beARider",
@@ -113,6 +118,7 @@ export const router = createBrowserRouter([
         path: "profile",
         Component: UpdateProfile,
       },
+
       // rider only routes
       {
         path: "pending-deliveries",

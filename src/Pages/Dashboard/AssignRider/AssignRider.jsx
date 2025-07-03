@@ -3,6 +3,7 @@ import { FaMotorcycle } from "react-icons/fa";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const AssignRider = () => {
   const axiosSecure = useAxiosSecure();
@@ -75,6 +76,10 @@ const AssignRider = () => {
 
   return (
     <div className="p-6">
+      <Helmet>
+        <title>AssignRider - QuickDrop Courier</title>
+        <meta name="description" content="QuickDrop Courier AssignRider" />
+      </Helmet>
       <h2 className="text-2xl font-bold mb-4">Assign Rider to Parcels</h2>
 
       {isLoading ? (
@@ -109,9 +114,9 @@ const AssignRider = () => {
                   <td>
                     <button
                       onClick={() => openAssignModal(parcel)}
-                      className="btn btn-sm btn-primary text-black"
+                      className="btn btn-sm bg-[#CAEB66]  text-black"
                     >
-                      <FaMotorcycle className="inline-block mr-1" />
+                      <FaMotorcycle className="inline-block mr-1 " />
                       Assign Rider
                     </button>
                   </td>

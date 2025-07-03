@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useTrackingLogger from "../../../Hooks/useTrackingLogger";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const PendingDeliveries = () => {
   const axiosSecure = useAxiosSecure();
@@ -68,6 +69,13 @@ const PendingDeliveries = () => {
 
   return (
     <div className="p-6">
+      <Helmet>
+        <title>PendingDeliveries - QuickDrop Courier</title>
+        <meta
+          name="description"
+          content="QuickDrop Courier PendingDeliveries"
+        />
+      </Helmet>
       <h2 className="text-3xl font-bold mb-6 text-center">
         📦 Pending Deliveries
       </h2>
@@ -127,14 +135,14 @@ const PendingDeliveries = () => {
                     )}
                     {parcel.delivery_status === "in_transit" && (
                       <button
-                        className="btn btn-sm bg-green-500 text-white hover:bg-green-600"
+                        className="btn btn-sm bg-[#CAEB66]  text-black hover:bg-green-600"
                         onClick={() => handleStatusUpdate(parcel, "delivered")}
                       >
-                        ✅ Mark Delivered
+                        Mark Delivered
                       </button>
                     )}
                     {parcel.delivery_status === "delivered" && (
-                      <span className="text-green-600 font-medium">
+                      <span className="bg-[#CAEB66]  text-black font-medium">
                         Delivered
                       </span>
                     )}

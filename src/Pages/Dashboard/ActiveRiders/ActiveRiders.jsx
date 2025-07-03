@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import { FaSearch, FaUserSlash } from "react-icons/fa";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const ActiveRiders = () => {
   const axiosSecure = useAxiosSecure();
@@ -53,6 +54,10 @@ const ActiveRiders = () => {
 
   return (
     <div className="p-6">
+      <Helmet>
+        <title>ActiveRiders - QuickDrop Courier</title>
+        <meta name="description" content="QuickDrop Courier ActiveRiders" />
+      </Helmet>
       <h2 className="text-2xl font-semibold mb-4">Active Riders</h2>
 
       {/* 🔍 Search Field */}

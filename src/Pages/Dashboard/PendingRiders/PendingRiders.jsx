@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { FaEye, FaCheck, FaTimes } from "react-icons/fa";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const PendingRiders = () => {
   const [selectedRider, setSelectedRider] = useState(null);
@@ -52,6 +53,10 @@ const PendingRiders = () => {
 
   return (
     <div className="p-6">
+      <Helmet>
+        <title>PendingRiders - QuickDrop Courier</title>
+        <meta name="description" content="QuickDrop Courier PendingRiders" />
+      </Helmet>
       <h2 className="text-2xl font-semibold mb-4">
         Pending Rider Applications
       </h2>

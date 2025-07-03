@@ -2,6 +2,7 @@ import React from "react";
 import useAuth from "../../../Hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const formatDate = (iso) => new Date(iso).toLocaleString();
 
@@ -23,6 +24,10 @@ const PaymentHistory = () => {
 
   return (
     <div className="overflow-x-auto shadow-md rounded-xl">
+      <Helmet>
+        <title>PaymentHistory - QuickDrop Courier</title>
+        <meta name="description" content="QuickDrop Courier PaymentHistory" />
+      </Helmet>
       <table className="table table-zebra w-full">
         <thead className="bg-base-200 text-base font-semibold">
           <tr>

@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const CompletedDeliveries = () => {
   const axiosSecure = useAxiosSecure();
@@ -63,6 +64,13 @@ const CompletedDeliveries = () => {
 
   return (
     <div className="p-6">
+      <Helmet>
+        <title>CompletedDeliveries - QuickDrop Courier</title>
+        <meta
+          name="description"
+          content="QuickDrop Courier CompletedDeliveries"
+        />
+      </Helmet>
       <h2 className="text-2xl font-bold mb-4">Completed Deliveries</h2>
       {isLoading ? (
         <p>Loading...</p>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
 import { useLoaderData } from "react-router";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const BeARider = () => {
   const { user } = useAuth();
@@ -61,6 +62,10 @@ const BeARider = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-base-100 rounded-xl shadow">
+      <Helmet>
+        <title>BeARider - QuickDrop Courier</title>
+        <meta name="description" content=" QuickDrop Courier BeARider Page" />
+      </Helmet>
       <h2 className="text-2xl font-bold mb-2">Become a Rider</h2>
       <p className="text-gray-500 mb-6">
         Fill out the form to apply as a delivery rider.
@@ -189,7 +194,7 @@ const BeARider = () => {
 
         <button
           type="submit"
-          className="btn btn-primary text-black w-full mt-4"
+          className="btn bg-[#CAEB66] text-black w-full mt-4"
         >
           Submit Rider Application
         </button>

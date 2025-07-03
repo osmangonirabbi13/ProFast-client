@@ -5,6 +5,7 @@ import useAuth from "../../../Hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import axios from "axios";
 import useAxios from "../../../Hooks/useAxios";
+import { Helmet } from "@dr.pogodin/react-helmet";
 
 const Register = () => {
   const {
@@ -69,6 +70,10 @@ const Register = () => {
   };
   return (
     <div className="card bg-base-100 w-full max-w-sm shrink-0 ">
+      <Helmet>
+        <title>Register - QuickDrop Courier</title>
+        <meta name="description" content="QuickDrop Courier Register" />
+      </Helmet>
       <div className="card-body">
         <h1 className="text-5xl font-bold">Create Account</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
