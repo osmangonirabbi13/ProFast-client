@@ -24,6 +24,7 @@ import AssignRider from "../Pages/Dashboard/AssignRider/AssignRider";
 import RiderRoute from "../Router/RiderRoute";
 import PendingDeliveries from "../Pages/Dashboard/PendingDeliveries/PendingDeliveries";
 import CompletedDeliveries from "../Pages/Dashboard/CompletedDeliveries/CompletedDeliveries";
+import MyEarnings from "../Pages/Dashboard/MyEarnings/MyEarnings";
 
 export const router = createBrowserRouter([
   {
@@ -116,6 +117,14 @@ export const router = createBrowserRouter([
         element: (
           <RiderRoute>
             <CompletedDeliveries></CompletedDeliveries>
+          </RiderRoute>
+        ),
+      },
+      {
+        path: "my-earnings",
+        element: (
+          <RiderRoute>
+            <MyEarnings></MyEarnings>
           </RiderRoute>
         ),
       },
