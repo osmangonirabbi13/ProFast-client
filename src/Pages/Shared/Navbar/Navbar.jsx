@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
 import ProFastLogo from "../ProFastLogo/ProFastLogo";
-import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../../Hooks/useAuth";
 
 const Navbar = () => {
   const { user, logOut, loading } = useAuth();
@@ -26,13 +26,6 @@ const Navbar = () => {
         <NavLink to="/coverage">Coverage</NavLink>
       </li>
 
-      {user && (
-        <>
-          <li>
-            <NavLink to="/dashboard">Dashboard</NavLink>
-          </li>
-        </>
-      )}
       <li>
         <NavLink to="/beARider">Be a Rider</NavLink>
       </li>
@@ -40,10 +33,18 @@ const Navbar = () => {
       <li>
         <NavLink to="/about">About Us</NavLink>
       </li>
+
+      {user && (
+        <>
+          <li>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (
-    <div className="navbar  p-0 bg-white px-2 md:px-12 lg:px-16 xl:px-80 lg:py-4  rounded-lg">
+    <div className="navbar sticky top-0 z-50 p-0 bg-white px-2 md:px-12 lg:px-16 xl:px-80 lg:py-4 rounded-lg shadow">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

@@ -13,7 +13,6 @@ const PaymentForm = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
-
   const [error, setError] = useState("");
 
   const { isPending, data: parcelInfo = {} } = useQuery({
@@ -24,108 +23,139 @@ const PaymentForm = () => {
     },
   });
 
-  if (isPending) {
-    return "...loading";
-  }
+  if (isPending) return "...loading";
 
-  console.log(parcelInfo);
   const amount = parcelInfo.cost;
   const amountInCents = amount * 100;
-  console.log(amountInCents);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!stripe || !elements) {
-      return;
-    }
+    if (!stripe || !elements) return;
 
     const card = elements.getElement(CardElement);
+    if (!card) return;
 
-    if (!card) {
+    const { error: methodError, paymentMethod } =
+      await stripe.createPaymentMethod({
+        type: "card",
+        card,
+      });
+
+    if (methodError) {
+      setError(methodError.message);
       return;
     }
 
-    // step- 1: validate the card
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card,
+    setError("");
+
+    // Create payment intent
+    const res = await axiosSecure.post("/create-payment-intent", {
+      amountInCents,
+      parcelId,
     });
 
-    if (error) {
-      setError(error.message);
-    } else {
-      setError("");
-      console.log("payment method", paymentMethod);
+    const clientSecret = res.data.clientSecret;
 
-      // step-2: create payment intent
-      const res = await axiosSecure.post("/create-payment-intent", {
-        amountInCents,
-        parcelId,
-      });
-
-      const clientSecret = res.data.clientSecret;
-
-      // step-3: confirm payment
-      const result = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-          billing_details: {
-            name: user.displayName,
-            email: user.email,
-          },
+    // Confirm payment
+    const result = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card,
+        billing_details: {
+          name: user.displayName,
+          email: user.email,
         },
-      });
+      },
+    });
 
-      if (result.error) {
-        setError(result.error.message);
-      } else {
-        setError("");
-        if (result.paymentIntent.status === "succeeded") {
-          console.log("Payment succeeded!");
-          const transactionId = result.paymentIntent.id;
-          // step-4 mark parcel paid also create payment history
-          const paymentData = {
-            parcelId,
-            email: user.email,
-            amount,
-            transactionId: transactionId,
-            paymentMethod: result.paymentIntent.payment_method_types,
-          };
+    if (result.error) {
+      setError(result.error.message);
+    } else if (result.paymentIntent.status === "succeeded") {
+      const transactionId = result.paymentIntent.id;
+      const paymentData = {
+        parcelId,
+        email: user.email,
+        amount,
+        transactionId,
+        paymentMethod: result.paymentIntent.payment_method,
+      };
 
-          const paymentRes = await axiosSecure.post("/payments", paymentData);
-          if (paymentRes.data.insertedId) {
-            // ✅ Show SweetAlert with transaction ID
-            await Swal.fire({
-              icon: "success",
-              title: "Payment Successful!",
-              html: `<strong>Transaction ID:</strong> <code>${transactionId}</code>`,
-              confirmButtonText: "Go to My Parcels",
-            });
+      const paymentRes = await axiosSecure.post("/payments", paymentData);
+      if (paymentRes.data.insertedId) {
+        await Swal.fire({
+          icon: "success",
+          title: "Payment Successful!",
+          html: `<strong>Transaction ID:</strong> <code>${transactionId}</code>`,
+          confirmButtonText: "Go to My Parcels",
+        });
 
-            // ✅ Redirect to /myParcels
-            navigate("/dashboard/myParcels");
-          }
-        }
+        navigate("/dashboard/myParcels");
       }
     }
   };
 
   return (
-    <div>
-      <form
-        onSubmit={handleSubmit}
-        className="space-y-4 bg-white p-6 rounded-xl shadow-md w-full max-w-md mx-auto"
-      >
-        <CardElement className="p-2 border rounded"></CardElement>
-        <button
-          type="submit"
-          className="btn bg-[#CAEB66] text-black w-full"
-          disabled={!stripe}
-        >
-          Pay ${amount}
-        </button>
-        {error && <p className="text-red-500">{error}</p>}
-      </form>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-lg">
+        <h2 className="text-xl font-semibold mb-4 text-center">
+          Complete Your Payment
+        </h2>
+
+        <div className="border rounded-md p-4 mb-4 bg-gray-50">
+          <div className="flex justify-between text-sm text-gray-600 mb-2">
+            <span>Item</span>
+            <span>{parcelInfo.title || "Parcel"}</span>
+          </div>
+          <div className="flex justify-between text-sm text-gray-600 mb-1">
+            <span>Subtotal</span>
+            <span>${amount.toFixed(2)}</span>
+          </div>
+          <div className="flex justify-between text-sm text-gray-600 mb-1">
+            <span>Tax</span>
+            <span>—</span>
+          </div>
+          <div className="border-t mt-2 pt-2 flex justify-between font-medium">
+            <span>Total</span>
+            <span>৳{amount.toFixed(2)}</span>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="border p-4 rounded-md bg-white shadow-inner focus-within:ring-2 focus-within:ring-blue-500">
+            <CardElement
+              className="text-sm"
+              options={{
+                style: {
+                  base: {
+                    fontSize: "16px",
+                    color: "#32325d",
+                    fontFamily: "'Helvetica Neue', Helvetica, sans-serif",
+                    "::placeholder": {
+                      color: "#a0aec0",
+                    },
+                  },
+                  invalid: {
+                    color: "#e53e3e",
+                  },
+                },
+              }}
+            />
+          </div>
+
+          {error && <p className="text-red-500 text-sm">{error}</p>}
+
+          <button
+            type="submit"
+            disabled={!stripe}
+            className="w-full bg-black text-white py-2 rounded-md hover:bg-gray-800 transition duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black disabled:opacity-50"
+          >
+            Pay ${amount.toFixed(2)}
+          </button>
+        </form>
+
+        <p className="text-xs text-gray-400 text-center mt-4">
+          Powered by <strong>Stripe</strong> | Secure payment
+        </p>
+      </div>
     </div>
   );
 };

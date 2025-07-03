@@ -58,14 +58,14 @@ const RiderDashboard = () => {
   ];
 
   return (
-    <div className="p-6 max-w-5xl mx-auto space-y-8">
-      <h1 className="text-3xl font-bold mb-6">Rider Dashboard</h1>
+    <div className="p-6 w-full space-y-8 bg-base-100">
+      <h1 className="text-3xl font-bold mb-6 text-center">Rider Dashboard</h1>
 
       {isLoading ? (
-        <p>Loading your data...</p>
+        <p className="text-center">Loading your data...</p>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 w-full max-w-full">
             {/* Delivered Parcels Count */}
             <div className="bg-base-200 p-6 rounded-xl shadow text-center">
               <h2 className="text-xl font-semibold mb-2">Delivered Parcels</h2>
@@ -89,11 +89,11 @@ const RiderDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-base-200 p-6 rounded-xl shadow mx-auto max-w-md">
+          <div className="bg-base-200 p-6 rounded-xl shadow mx-auto w-full max-w-full">
             <h2 className="text-xl font-semibold mb-4 text-center">
               Overview Pie Chart
             </h2>
-            <ResponsiveContainer width="100%" height={300}>
+            <ResponsiveContainer width="100%" height={350}>
               <PieChart>
                 <Pie
                   data={data}
@@ -101,7 +101,7 @@ const RiderDashboard = () => {
                   nameKey="name"
                   cx="50%"
                   cy="50%"
-                  outerRadius={100}
+                  outerRadius={120}
                   label={(entry) =>
                     entry.name === "Delivered Parcels"
                       ? `${entry.name}: ${entry.value}`

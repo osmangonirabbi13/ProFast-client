@@ -30,10 +30,10 @@ const TrackParcel = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
+    <div className="w-full px-4 py-8">
       <h2 className="text-3xl font-bold mb-6 text-center">Track Your Parcel</h2>
 
-      <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-8">
+      <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-8 w-full">
         <input
           type="text"
           placeholder="Enter Tracking ID"
@@ -41,7 +41,10 @@ const TrackParcel = () => {
           value={trackingId}
           onChange={(e) => setTrackingId(e.target.value)}
         />
-        <button className="btn btn-primary" onClick={handleTrack}>
+        <button
+          onClick={handleTrack}
+          className="btn btn-primary w-full sm:w-auto"
+        >
           Track
         </button>
       </div>
@@ -57,7 +60,7 @@ const TrackParcel = () => {
       )}
 
       {!loading && updates.length > 0 && (
-        <div className="bg-white rounded-lg shadow p-6">
+        <div className="bg-white rounded-lg shadow p-6 w-full">
           <h3 className="text-xl font-semibold mb-4">Tracking History</h3>
           <ol className="relative border-l border-blue-300">
             {updates.map((update, index) => (
